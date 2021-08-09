@@ -1,0 +1,7 @@
+.vscode
+
+# ignore executable file on Windows
+*.exe
+
+# ignore all main binary compiled using Makefile on Linux
+main
