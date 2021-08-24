@@ -17,4 +17,7 @@ void test(int* arr, int n , int wanted){
 
 int main(){
     test((int[]){2,2,1},3,1);
+    test((int[]){4,1,2,1,2},5,4);
+    test((int[]){1},1,1);
+    test((int[]){1,2,1,2,-1},5,-1);
 }
