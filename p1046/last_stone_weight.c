@@ -3,6 +3,7 @@
 
 int compare(const void* a, const void* b) { return (*(int*)b - *(int*)a); }
 
+// TODO: this is O(n^2 log(n)), can be faster, can be O(n logn).
 int lastStoneWeight(int* arr, int n) {
     for (int i = 0; i < n - 1; i++) {
         qsort(arr, n, sizeof(int), compare);
