@@ -48,7 +48,7 @@ void print_list(struct ListNode* head) {
 }
 
 bool assert_list_equal(struct ListNode* wanted, struct ListNode* actual) {
-     struct ListNode* a = actual;
+    struct ListNode* a = actual;
     struct ListNode* w = wanted;
     while (a != NULL && w != NULL) {
         if (a->val != w->val) {
@@ -73,6 +73,23 @@ bool assert_list_equal(struct ListNode* wanted, struct ListNode* actual) {
     }
 
     return true;
+}
+
+//       V
+// head: 1 -> 2 -> 3 -> 4
+// val: 3
+// return: 3->4
+struct ListNode* search_list(struct ListNode* head, int val) {
+    struct ListNode* node = head;
+    while (node != NULL) {
+        if (node->val == val) {
+            return node;
+        } 
+        
+        node = node->next;
+    }
+
+    return node; // node == NULL
 }
 
 #endif
