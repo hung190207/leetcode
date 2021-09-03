@@ -14,6 +14,7 @@ struct ListNode* reverseList(struct ListNode* head) {
     }
     return newHead;
 }
+
 void test(struct ListNode* head, struct ListNode* wanted) {
     struct ListNode* actual = reverseList(head);
     assert_list_equal(wanted, actual);
