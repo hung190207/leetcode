@@ -47,6 +47,11 @@ void print_list(struct ListNode* head) {
     printf("\n");
 }
 
+void print_list_msg(char* msg, struct ListNode* head) {
+    printf("%s\n", msg);
+    print_list(head);
+}
+
 bool assert_list_equal(struct ListNode* wanted, struct ListNode* actual) {
     struct ListNode* a = actual;
     struct ListNode* w = wanted;
@@ -84,12 +89,12 @@ struct ListNode* search_list(struct ListNode* head, int val) {
     while (node != NULL) {
         if (node->val == val) {
             return node;
-        } 
-        
+        }
+
         node = node->next;
     }
 
-    return node; // node == NULL
+    return node;  // node == NULL
 }
 
 #endif
