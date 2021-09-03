@@ -11,7 +11,7 @@ int getDecimalValue(struct ListNode* head) {
     // v
     // 1 -> 0 -> 1
     //      ^
-    //      ^ {head->val != NULL}
+    //      ^ {head->next != NULL}
     //
     // result = 5
     while (head->next != NULL) {
