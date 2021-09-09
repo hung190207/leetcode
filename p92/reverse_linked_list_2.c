@@ -4,27 +4,28 @@
 
 struct ListNode* reverseBetween(struct ListNode* head, int left, int right) {
     struct ListNode prev = {0, head};
-    struct ListNode* node = &prev;
-    struct ListNode* node_2;
-    struct ListNode* temp;
+    struct ListNode* start = &prev;
+
     right -= left;
     while (--left > 0) {
-        node = node->next;
+        start = start->next;
     }
-    node_2 = node->next;
-    while (right-- > 0 && node_2->next) {
-        temp = node_2->next->next;
-        node_2->next->next = node->next;
-        node->next = node_2->next;
-        node_2->next = temp;
+
+    struct ListNode* end = start->next;
+    while (right-- > 0 && end->next) {
+        struct ListNode* temp = end->next->next;
+        end->next->next = start->next;
+        start->next = end->next;
+        end->next = temp;
     }
+
     // This is how is the algorithm run:
     //
     // prev
     // v
     // 1 -> 2 -> 3 -> 4 -> 5
     // ^
-    // node
+    // start
 
     // right = right - left
     // => right = 2
@@ -34,41 +35,48 @@ struct ListNode* reverseBetween(struct ListNode* head, int left, int right) {
     //  v
     //  1 -> 2 -> 3 -> 4 -> 5
     //       ^
-    //      node
-    //      node_2
+    //      start
+    //      end
 
     // in while_2 :
     //               temp
     //                v
     // 1 -> 2 -> 3 -> 4 -> 5
     //      ^
-    //     node
-    //    node_2
+    //     start
+    //    end
 
-    // node_2->next->next = node->next
+    // end->next->next = start->next
     // => 1 -> 2 -> 4 -> 3 -> 5
 
-    // node->next = node_2->next
+    // start->next = end->next
     // => 1 -> 4 -> 2 -> 3 -> 5
 
-    // node_2->next = temp
+    // end->next = temp
     // => 1 -> 4 -> 3 -> 2 -> 5
     return prev.next;
 }
 
 void test(struct ListNode* head, int left, int right, struct ListNode* wanted) {
     struct ListNode* actual = reverseBetween(head, left, right);
-    printf("\nList:");
-    print_list(head);
-    printf("\nWanted List:");
-    print_list(wanted);
     printf("\n");
+    printf("       List: ");
+    print_list(head);
+    printf("Wanted List: ");
+    print_list(wanted);
     assert_list_equal(wanted, actual);
 }
 
 int main() {
     test(makeList(5, 1, 2, 3, 4, 5), 2, 4,  //
          makeList(5, 1, 4, 3, 2, 5));
+
     test(makeList(6, 2, 3, 4, 5, 6, 7), 3, 6,  //
          makeList(6, 2, 3, 7, 6, 5, 4));
+
+    test(makeList(6, 2, 3, 4, 5, 6, 7), 0, 6,  //
+         makeList(6, 7, 6, 5, 4, 3, 2));
+
+    test(makeList(6, 2, 3, 4, 5, 6, 7), 1, 1,  //
+         makeList(6, 2, 3, 4, 5, 6, 7));
 }
