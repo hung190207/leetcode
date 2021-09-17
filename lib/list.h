@@ -114,5 +114,4 @@ struct ListNode* merge_list(struct ListNode* l1, struct ListNode* l2) {
     }
 }
 
-
 #endif
