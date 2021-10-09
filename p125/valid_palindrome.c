@@ -26,8 +26,7 @@ bool isPalindrome(char* s) {
         }
 
         if (isalnum(s[l]) && isalnum(s[r])) {
-            if ((s[l] | ' ') !=
-                (s[r] | ' ')) {  // You can change (space) to 32 in Ascii table.
+            if ((s[l] | ' ') != (s[r] | ' ')) { // You can change (space) to 32 in Ascii table.
                 return false;
             }
             l++;
